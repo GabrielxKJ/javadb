@@ -10,8 +10,6 @@ COPY mvnw .
 
 COPY .mvn .mvn
 
-RUN mvn clean install -DskipTests
-
 RUN chmod 777 mvnw
 
 RUN ./mvnw package
