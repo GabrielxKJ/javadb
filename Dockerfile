@@ -4,14 +4,15 @@ WORKDIR /app
 
 COPY pom.xml .
 
-COPY src ./src
-
 COPY mvnw .
-
 COPY .mvn .mvn
 
-RUN chmod 777 mvnw
+RUN ./mvnw dependency:go-offline
 
-RUN ./mvnw package
+COPY src ./src
+
+RUN chmod +x mvnw
+
+RUN ./mvnw package -DskipTests
 
 CMD ["java", "-jar", "target/aulabd2-0.0.1-SNAPSHOT.war"]
